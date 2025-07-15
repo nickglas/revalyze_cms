@@ -90,8 +90,10 @@ jobs:
             # Kubernetes namespace for CMS
             microk8s.kubectl get namespace revalyze || microk8s.kubectl create namespace revalyze
 
-            # Apply CMS K8s manifests from CMS repo (adjust path if different)
+            # Apply manifests
             microk8s.kubectl apply -f /home/ubuntu/revalyze_cms/k8s/cms
+
+            sleep 10
 
             # Restart CMS deployment
             microk8s.kubectl rollout restart deployment/revalyze-cms -n revalyze
